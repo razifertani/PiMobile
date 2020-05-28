@@ -55,18 +55,27 @@ public class detailEvent extends Form {
         Button book = new Button("Book");
         cnt.add(book);
 
+        cnt.add(" ");
+        Label lbb = new Label("How many places to book ?");
+        cnt.add(lbb);
+        TextField tf = new TextField(null, "Number of places");
+        cnt.add(tf);
+        Button booknow = new Button("Book now");
+        cnt.add(booknow);
+
+        lbb.setVisible(false);
+        tf.setVisible(false);
+        booknow.setVisible(false);
+
         book.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
 
                 boolean e = Dialog.show("Book", "Do you really want to book ? ", "Yes", "No");
                 if (e) {
-                    Label lbb = new Label("How many places to book ?");
-                    cnt.add(lbb);
-                    TextField tf = new TextField(null, "Number of places");
-                    cnt.add(tf);
-                    Button booknow = new Button("Book now");
-                    cnt.add(booknow);
+                    lbb.setVisible(true);
+                    tf.setVisible(true);
+                    booknow.setVisible(true);
 
                     booknow.addActionListener(new ActionListener() {
                         @Override
@@ -82,6 +91,10 @@ public class detailEvent extends Form {
                             } else {
                                 nbr = nbr - npb;
                                 event.setNbr(nbr);
+                                Label lbpn = new Label("Number of places remaining: " + event.getNbr() + "        ");
+                                lbp.setVisible(false);
+                                cnt.add(" ");
+                                cnt.add(lbpn);
                                 i.setIdEvent(event);
 
                                 ServicesInscription.getInstance().addInscription(i, npb);
