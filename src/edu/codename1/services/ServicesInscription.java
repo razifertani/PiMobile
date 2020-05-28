@@ -35,9 +35,9 @@ public class ServicesInscription {
         return instance;
     }
 
-    public Boolean addInscription(Inscription i) {
+    public Boolean addInscription(Inscription i,int npb) {
 
-        String url = BASE_URL + "Event/inscription/" + i.getIdEvent().getId() + "/" + i.getIdClient().getId() + "/newM";
+        String url = BASE_URL + "Event/inscription/" + i.getIdEvent().getId() + "/" + i.getIdClient().getId() + "/" + npb + "/newM";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
