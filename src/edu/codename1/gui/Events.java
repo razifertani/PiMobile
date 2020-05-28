@@ -36,21 +36,24 @@ public class Events extends Form {
                 Event cs = listEvent.get(i);
             }
         }
+        
         for (Event i : listEvent) {
-            Label lb = new Label(i.getNom() + " at " + i.getDestination());
-            cnt.add(lb);
+            if (i.getNbr() != 0) {
+                Label lb = new Label(i.getNom() + " at " + i.getDestination());
+                cnt.add(lb);
 
-            Button detail = new Button("View details");
-            cnt.add(detail);
+                Button detail = new Button("View details");
+                cnt.add(detail);
 
-            detail.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    {
-                        new detailEvent(theme, i).show();
+                detail.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        {
+                            new detailEvent(theme, i).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
         add(cnt);
