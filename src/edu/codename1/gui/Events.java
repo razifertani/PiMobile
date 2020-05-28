@@ -37,7 +37,9 @@ public class Events extends Form {
             }
         }
         for (Event i : listEvent) {
-            cnt.add(i.toString());
+            Label lb = new Label(i.getNom() + " at " + i.getDestination());
+            cnt.add(lb);
+
             Button detail = new Button("View details");
             cnt.add(detail);
 

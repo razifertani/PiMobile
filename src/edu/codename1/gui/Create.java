@@ -31,7 +31,7 @@ public class Create extends Form {
         setTitle("TuniFast");
         setLayout(new FlowLayout(Component.CENTER, Component.CENTER));
         Container cnt = new Container(BoxLayout.y());
-
+        
         ImageViewer imageName = new ImageViewer(theme.getImage("TuniFastLogo.jpg"));
         TextField email = new TextField(null, "Email");
         TextField username = new TextField(null, "Username");

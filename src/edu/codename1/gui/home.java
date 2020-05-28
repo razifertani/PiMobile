@@ -10,7 +10,9 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import edu.codename1.entities.Session;
 import edu.codename1.entities.user;
-
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
+import javafx.scene.image.Image;
 
 public class home extends Form {
 
@@ -23,24 +25,32 @@ public class home extends Form {
         setTitle("Welcome to TuniFast");
         setLayout(BoxLayout.y());
         Container cnt = new Container(BoxLayout.y());
-        
+
         ImageViewer imageName = new ImageViewer(theme.getImage("Capture.JPG"));
         Label l1 = new Label("Welcome " + User.getUsername() + ", TuniFast is here to help");
         Label l2 = new Label("you to travel across Tunisia !");
         Button book = new Button("Book now");
+        
         cnt.add(imageName);
         cnt.add(l1);
         cnt.add(l2);
         cnt.add(book);
         add(cnt);
-        
+
+        book.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                new Events(theme).show();
+            }
+        });
+
         getToolbar().addCommandToSideMenu("Home", null, ev -> {
         });
 
         getToolbar().addCommandToSideMenu("Profile", null, ev -> {
             new Profile(theme).show();
         });
-        
+
         getToolbar().addCommandToSideMenu("Events", null, ev -> {
             new Events(theme).show();
         });
