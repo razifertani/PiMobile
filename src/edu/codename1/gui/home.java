@@ -1,5 +1,7 @@
 package edu.codename1.gui;
 
+import com.codename1.components.ImageViewer;
+import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
@@ -18,21 +20,29 @@ public class home extends Form {
     public home(Resources theme) {
         current = this;
 
-//        setTitle(User.getRoles());
         setTitle("Welcome to TuniFast");
         setLayout(BoxLayout.y());
         Container cnt = new Container(BoxLayout.y());
         
-        Label l = new Label("Hello " + User.getUsername());
-        cnt.add(l);
+        ImageViewer imageName = new ImageViewer(theme.getImage("Capture.JPG"));
+        Label l1 = new Label("Welcome " + User.getUsername() + ", TuniFast is here to help");
+        Label l2 = new Label("you to travel across Tunisia !");
+        Button book = new Button("Book now");
+        cnt.add(imageName);
+        cnt.add(l1);
+        cnt.add(l2);
+        cnt.add(book);
         add(cnt);
-        
         
         getToolbar().addCommandToSideMenu("Home", null, ev -> {
         });
 
         getToolbar().addCommandToSideMenu("Profile", null, ev -> {
             new Profile(theme).show();
+        });
+        
+        getToolbar().addCommandToSideMenu("Events", null, ev -> {
+            new Events(theme).show();
         });
 
         getToolbar().addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, ev -> {

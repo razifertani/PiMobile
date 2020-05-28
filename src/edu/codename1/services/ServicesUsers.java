@@ -21,7 +21,7 @@ public class ServicesUsers {
     public user User = new user();
 
     private ServicesUsers() {
-        req = new ConnectionRequest();
+        req = new ConnectionRequest();  
     }
 
     public static ServicesUsers getInstance() {
@@ -31,7 +31,7 @@ public class ServicesUsers {
         }
         return instance;
     }
-    
+
     public boolean addAccount(user u) {
         String url = "http://127.0.0.1:8000/registerAPI/" + u.getEmail() + "/" + u.getUsername() + "/" + u.getPassword();
         req.setUrl(url);
@@ -47,15 +47,12 @@ public class ServicesUsers {
     }
 
     public user parseUser(String jsonText) {
-   
+
         user UserL = new user();
         try {
             JSONParser j = new JSONParser();
-
             Map<String, Object> UserListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
-
             if (UserListJson.get("type").equals("Login succeed")) {
-                
                 float id = Float.parseFloat(UserListJson.get("id").toString());
                 UserL.setId((int) (id));
                 UserL.setEmail(UserListJson.get("email").toString());
@@ -65,20 +62,17 @@ public class ServicesUsers {
                 } else {
                     UserL.setRoles("CLIENT");
                 }
-
             } else {
                 return null;
             }
-
         } catch (IOException ex) {
-                ex.getMessage();
+            ex.getMessage();
         }
         return UserL;
     }
 
-    public user Login(String username,String password) {
-        String url =BASE_URL +"loginMobile/"+username+"/"+password;
-        System.out.println(url);
+    public user Login(String username, String password) {
+        String url = BASE_URL + "loginMobile/" + username + "/" + password;
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -91,5 +85,63 @@ public class ServicesUsers {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return User;
     }
+
+    
+    public boolean updateMP(String username, String password) {
+        String url = BASE_URL + "updateAPIP/" + username + "/" + password;
+        System.out.println(url);
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+
+    public boolean updateMR(String username) {
+        String url = BASE_URL + "updateAPIR/" + username;
+        System.out.println(url);
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+
+    
+    public boolean updateMC(String username) {
+        String url = BASE_URL + "updateAPIC/" + username;
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+     
+
+    public void deleteM(String username) {
+        req.setPost(true);
+        String url = BASE_URL + "deleteAPI/" + username;
+        req.setUrl(url);
+        req.setHttpMethod("POST");
+        req.addArgument("User", String.valueOf(username));
+        NetworkManager.getInstance().addToQueueAndWait(req);
+    }
+    
+
 
 }

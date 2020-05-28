@@ -17,7 +17,6 @@ import com.codename1.ui.util.Resources;
 import edu.codename1.entities.Session;
 import edu.codename1.entities.user;
 import edu.codename1.services.ServicesUsers;
-import edu.codename1.gui.Create;
 
 public class Login extends Form {
 
@@ -63,7 +62,6 @@ public class Login extends Form {
                             Dialog.show("Alert", "Invalid username or password", "OK", null);
                         }
                     }
-
                 }
             }
         });
