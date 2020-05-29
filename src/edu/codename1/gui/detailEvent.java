@@ -6,6 +6,7 @@
 package edu.codename1.gui;
 
 import com.codename1.ui.Button;
+import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
@@ -15,6 +16,7 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
 import edu.codename1.entities.Event;
 import edu.codename1.entities.Inscription;
@@ -36,6 +38,7 @@ public class detailEvent extends Form {
 
     public detailEvent(Resources theme, Event event) {
         current = this;
+        setLayout(new FlowLayout(Component.CENTER, Component.CENTER));        
         Container cnt = new Container(BoxLayout.y());
 
         setTitle(event.getNom());
@@ -86,12 +89,12 @@ public class detailEvent extends Form {
                             c.setId(User.getId());
                             i.setIdClient(c);
                             int nbr = event.getNbr();
-                            if (nbr == 0) {
+                            if (nbr-npb <= 0) {
                                 Dialog.show("Alert", "No places remaining, Sorry !", "Ok", null);
                             } else {
                                 nbr = nbr - npb;
                                 event.setNbr(nbr);
-                                Label lbpn = new Label("Number of places remaining: " + event.getNbr() + "        ");
+                                Label lbpn = new Label("New number of places remaining: " + event.getNbr() + "        ");
                                 lbp.setVisible(false);
                                 cnt.add(" ");
                                 cnt.add(lbpn);

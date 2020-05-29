@@ -24,7 +24,7 @@ public class Login extends Form {
     private static user User;
 
     public Login(Resources theme) {
-        current = this; //Récupérsation de l'interface(Form) en cours
+        current = this;
         setTitle("TuniFast");
         setLayout(new FlowLayout(Component.CENTER, Component.CENTER));
         Container cnt = new Container(BoxLayout.y());

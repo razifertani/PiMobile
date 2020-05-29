@@ -1,7 +1,6 @@
 package edu.codename1.gui;
 
 import com.codename1.ui.Button;
-import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
@@ -10,11 +9,9 @@ import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
 import edu.codename1.entities.Session;
 import edu.codename1.entities.user;
-import static edu.codename1.gui.home.current;
 import edu.codename1.services.ServicesUsers;
 
 public class Profile extends Form {
