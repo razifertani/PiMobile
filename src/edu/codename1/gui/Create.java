@@ -32,7 +32,7 @@ public class Create extends Form {
         setLayout(new FlowLayout(Component.CENTER, Component.CENTER));
         Container cnt = new Container(BoxLayout.y());
         
-        ImageViewer imageName = new ImageViewer(theme.getImage("TuniFastLogo.jpg"));
+        ImageViewer imageName = new ImageViewer(theme.getImage("4790.jpg"));
         TextField email = new TextField(null, "Email");
         TextField username = new TextField(null, "Username");
         TextField password = new TextField(null, "Password");
@@ -43,10 +43,12 @@ public class Create extends Form {
         Button createA = new Button("Create an account");
 
         cnt.add(imageName);
+        cnt.add(" ");
         cnt.add(email);
         cnt.add(username);
         cnt.add(password);
         cnt.add(passwordC);
+        cnt.add(" ");
         cnt.add(createA);
         add(cnt);
 

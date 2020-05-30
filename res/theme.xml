@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="27642.jpg"  />
+    <image name="3675820.jpg"  />
+    <image name="4790.jpg"  />
     <image name="Affiche.jpg"  />
     <image name="back-command.png" type="multi"  />
     <image name="back-command.png1" type="multi"  />

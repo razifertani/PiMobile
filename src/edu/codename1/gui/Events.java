@@ -44,6 +44,7 @@ public class Events extends Form {
 
                 Button detail = new Button("View details");
                 cnt.add(detail);
+                cnt.add(" ");
 
                 detail.addActionListener(new ActionListener() {
                     @Override

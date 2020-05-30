@@ -26,14 +26,17 @@ public class home extends Form {
         setLayout(BoxLayout.y());
         Container cnt = new Container(BoxLayout.y());
 
-        ImageViewer imageName = new ImageViewer(theme.getImage("Capture.JPG"));
+        ImageViewer imageName = new ImageViewer(theme.getImage("Affiche.jpg"));
         Label l1 = new Label("Welcome " + User.getUsername() + ", TuniFast is here to help");
         Label l2 = new Label("you to travel across Tunisia !");
         Button book = new Button("Book now");
         
+        cnt.add(" ");
         cnt.add(imageName);
+        cnt.add(" ");
         cnt.add(l1);
         cnt.add(l2);
+        cnt.add(" ");
         cnt.add(book);
         add(cnt);
 

@@ -55,7 +55,7 @@ public class ServicesEvents {
                 event.add(ch);
             }
         } catch (JSONException ex) {
-            System.out.println("erreru");
+            System.out.println("Erreur");
         }
         return event;
     }

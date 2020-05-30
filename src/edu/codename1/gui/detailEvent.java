@@ -5,6 +5,7 @@
  */
 package edu.codename1.gui;
 
+import com.codename1.components.ImageViewer;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -22,8 +23,6 @@ import edu.codename1.entities.Event;
 import edu.codename1.entities.Inscription;
 import edu.codename1.entities.Session;
 import edu.codename1.entities.user;
-import static edu.codename1.gui.Events.current;
-import edu.codename1.services.OpinionDAO;
 import edu.codename1.services.ServicesInscription;
 import edu.codename1.services.TwilioSMS;
 
@@ -38,20 +37,19 @@ public class detailEvent extends Form {
 
     public detailEvent(Resources theme, Event event) {
         current = this;
-        setLayout(new FlowLayout(Component.CENTER, Component.CENTER));        
+        setLayout(new FlowLayout(Component.CENTER, Component.CENTER));
         Container cnt = new Container(BoxLayout.y());
 
         setTitle(event.getNom());
+        ImageViewer imageName = new ImageViewer(theme.getImage("27642.jpg"));
 
+        cnt.add(imageName);
         cnt.add(" ");
         cnt.add("at " + event.getDestination());
-        cnt.add(" ");
         cnt.add("from " + event.getDepart());
-        cnt.add(" ");
         cnt.add("" + event.getDate());
-        cnt.add(" ");
 
-        Label lbp = new Label("Number of places remaining: " + event.getNbr() + "        ");
+        Label lbp = new Label("Number of places remaining: " + event.getNbr());
         cnt.add(lbp);
         cnt.add(" ");
 
@@ -89,22 +87,21 @@ public class detailEvent extends Form {
                             c.setId(User.getId());
                             i.setIdClient(c);
                             int nbr = event.getNbr();
-                            if (nbr-npb <= 0) {
+                            if (nbr - npb <= 0) {
                                 Dialog.show("Alert", "No places remaining, Sorry !", "Ok", null);
                             } else {
                                 nbr = nbr - npb;
                                 event.setNbr(nbr);
                                 Label lbpn = new Label("New number of places remaining: " + event.getNbr() + "        ");
                                 lbp.setVisible(false);
-                                cnt.add(" ");
                                 cnt.add(lbpn);
+                                cnt.add(" ");
                                 i.setIdEvent(event);
 
                                 ServicesInscription.getInstance().addInscription(i, npb);
                                 Dialog.show("SUCCESS", "You are now registred !", "Ok", null);
 
-//                    new OpinionDAO(User.getUsername(),event.getNom()); 
-/*
+                                /*
                     User.toString();
                     TwilioSMS s = new TwilioSMS("AC074fe3915843dd08870c671c756c753c", "4bf351cd08cb34c6fc472ca017efba94", "+13344876169");
                     s.sendSmsAsync("+21658116113", "Mrs,Mr you are registred in :" + event.getNom() + "  succefully" + User.getUsername() + "Welcome, we are waiting for you !");

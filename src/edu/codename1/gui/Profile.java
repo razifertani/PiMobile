@@ -1,5 +1,6 @@
 package edu.codename1.gui;
 
+import com.codename1.components.ImageViewer;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
@@ -31,6 +32,8 @@ public class Profile extends Form {
         Label l4 = new Label("You are a CLIENT until now, you want to");
         Label l5 = new Label("become a driver ?");
         Button upgrade = new Button("Upgrade now");
+        cnt.add(" ");
+        ImageViewer imageName = new ImageViewer(theme.getImage("3675820.jpg"));
 
         cnt.add(l1);
         cnt.add(l2);
@@ -40,6 +43,7 @@ public class Profile extends Form {
             cnt.add(l5);
             cnt.add(upgrade);
         }
+        cnt.add(imageName);
         add(cnt);
 
         getToolbar().addCommandToOverflowMenu("Edit password", null, ev -> {
